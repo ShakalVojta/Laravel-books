@@ -8,7 +8,7 @@
     <title>@yield('title', 'Book Project')</title>
 </head>
 <body>
-    @extends('common/navigation', [
+    @include('common/navigation', [
         'current_page' => $current_page
     ])
     @yield('content')
