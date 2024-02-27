@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/test/array', [TestController::class,'arrayResponse']);
 Route::get('/test/model', [TestController::class, 'modelResponse']);
 Route::get('/test/collection', [TestController::class, 'collectionResponse']);
+Route::get('books/latest', ['App\Http\Controllers\Api\BookController', 'latest']);
