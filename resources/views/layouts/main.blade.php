@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/style.css')
-    <title>@yield('title', 'Book Project')</title>
+    <title>Document</title>
+    @vite('resources/css/common.scss')
 </head>
 <body>
-    @include('common/navigation', [
+    @include('common.navigation', [
         'current_page' => $current_page
     ])
     @yield('content')

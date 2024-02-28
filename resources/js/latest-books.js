@@ -1,23 +1,24 @@
-const loadData = async () => {
-    try {
-        const response = await fetch('https://classes.codingbootcamp.cz/assets/classes/books-api/latest-books.php');
-        const data = await response.json();
-        const latestBooksElement = document.getElementById('latest-books');
+const fetchData = async () => {
+    const response = await fetch('/api/books/latest');
+    const data = await response.json();
+    console.log(data)
 
+    generateList(data)
+
+    return data;
+}
+
+const generateList = (data) => {
+    const listElement = document.getElementById('latest-books');
+
+    if (listElement) {
         data.forEach(book => {
-            const bookElement = document.createElement('div');
-            bookElement.classList.add('book');
-            bookElement.innerHTML = `
-            <h2>${book.title}</h2>
-            <p>Author: ${book.authors[0].name}</p>
-            <p>Published: ${book.publication_date}</p>
-            <p>Price: ${book.price}</p>
-        `;
-            latestBooksElement.appendChild(bookElement);
+            listElement.innerHTML += `<div>
+            <img src="${book.image}" /><br>
+            ${book.title}
+            </div>`
         });
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
     }
-};
-document.addEventListener('DOMContentLoaded', loadData);
+}
+
+fetchData();

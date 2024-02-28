@@ -1,16 +1,17 @@
 
-@extends('layouts.main', [
+@extends('layouts.admin', [
     'current_page' => '/admin/authors'
 ])
 
 @section('title', 'List of Authors')
 
 @section('content')
-    <h1>List of Authors</h1>
-
-    <ul>
+    <a href="{{ route('admin.author.create') }}">Add new author</a>
+    <ul class="authors">
         @foreach ($authors as $author)
-            <li>{{ $author->name }}</li>
+            <li>
+                {{ $author->name }}
+            </li>
         @endforeach
     </ul>
 @endsection

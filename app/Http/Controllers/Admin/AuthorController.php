@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Author;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class AuthorController extends Controller
 {
@@ -19,17 +18,18 @@ class AuthorController extends Controller
     }
 
     public function store(Request $request) {
-        $validated_data = $request->validate([
-            'name' => 'required|string|max:255',
-            'bio' => 'required|string',
+        $this->validate( $request, [
+            'name' => 'required',
+            'slug' => 'required'
         ]);
 
-        $slug = Str::slug($validated_data['name']);
+        $author = new Author;
+        $author->name = $request->input('name');
+        $author->slug = $request->input('slug');
+        $author->bio = $request->input('bio');
+        $author->save();
 
-    $authorData = array_merge($validated_data, ['slug' => $slug]);
-    $author = Author::create($authorData);
-
-    return redirect('/admin/authors')->with('success', 'Author created successfully');
+        return redirect()->route('admin.author.index');
 
     }
 }

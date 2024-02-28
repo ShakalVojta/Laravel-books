@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Book;
+use Auth;
 
-class HomeController extends Controller {
-    public function index () {
-
-        $user = Auth::user();
+class HomepageController extends Controller
+{
+    public function index()
+    {
         $crime_books = Book::where('category_id', 12)
             ->orderBy('publication_date', 'desc')
-            ->limit(10)
+            ->with('authors')
+            ->limit( \Gate::allows('owner') ? 10 : 1)
             ->get();
 
         return view('index.index', compact('crime_books'));
     }
-    
 }

@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['App\Http\Controllers\HomepageController', 'index']);
+Route::get('/book/{id}', ['App\Http\Controllers\BookController', 'show']);
+Route::post('/book/{id}/review', ['App\Http\Controllers\BookController', 'review'])->middleware('auth');
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/about-us', [AboutUsController::class, 'index']);
+Route::get('/about-us', function () {
+    return view('about.about-us');
+});

@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Book;
+use App\Models\User;
 
-class Author extends Model
+class Review extends Model
 {
     use HasFactory;
 
-    public function books()
+    public function user()
     {
-        return $this->belongsToMany(Book::class);
+        return $this->belongsTo(User::class);
     }
 }

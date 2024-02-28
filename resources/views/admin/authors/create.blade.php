@@ -1,21 +1,12 @@
-@extends('layouts.main', [
-    'current_page' => '/admin/authors/create'
-])
-
-@section('title', 'Create Author')
+@extends('layouts.admin')
 
 @section('content')
-    <h1>Create Author</h1>
-
-    <form action="{{ url('/admin/authors') }}" method="post">
+    <form action="{{ route('admin.author.store') }}" method="post">
         @csrf
 
-        <label for="name">Author Name:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="bio">Author Biography:</label>
-        <textarea id="bio" name="bio" rows="4" required></textarea>
-
-        <button type="submit">Create Author</button>
+        <input type="text" name="slug" placeholder="Slug *">
+        <input type="text" name="name" placeholder="Name *">
+        <input type="text" name="bio" placeholder="Bio">
+        <button type="submit">Add author</button>
     </form>
 @endsection

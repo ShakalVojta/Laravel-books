@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\TestController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,5 @@ Route::get('/test/array', [TestController::class,'arrayResponse']);
 Route::get('/test/model', [TestController::class, 'modelResponse']);
 Route::get('/test/collection', [TestController::class, 'collectionResponse']);
 Route::get('books/latest', ['App\Http\Controllers\Api\BookController', 'latest']);
+Route::get('books/search', ['App\Http\Controllers\Api\BookController', 'search']);
+Route::get('users', [UserController::class, 'index']);
