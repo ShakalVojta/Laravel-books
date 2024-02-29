@@ -13,7 +13,7 @@ class HomepageController extends Controller
         $crime_books = Book::where('category_id', 12)
             ->orderBy('publication_date', 'desc')
             ->with('authors')
-            ->limit( \Gate::allows('owner') ? 10 : 1)
+            ->limit( \Gate::allows('owner'))
             ->get();
 
         return view('index.index', compact('crime_books'));
